@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Shop</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        header { text-align: center; color: white; margin-bottom: 40px; padding: 20px 0; }
+        header h1 { font-size: 2.5em; margin-bottom: 8px; }
+        header p { font-size: 1.1em; opacity: 0.95; }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        .product-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+            transition: transform 0.25s ease;
+        }
+        .product-card:hover { transform: translateY(-5px); }
+        .product-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background: #f5f5f5;
+        }
+        .product-info { padding: 20px; }
+        .product-title { font-size: 1.4em; color: #333; margin-bottom: 8px; }
+        .product-description { color: #666; margin-bottom: 12px; line-height: 1.5; font-size: 0.95em; }
+        .product-price { font-size: 1.6em; color: #667eea; font-weight: bold; margin-bottom: 12px; }
+        .buy-button {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+        .buy-button:hover { opacity: 0.95; }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.75);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+        .modal-content {
+            background: white;
+            max-width: 800px;
+            margin: 40px auto;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+        }
+        .close-modal {
+            position: absolute;
+            top: 15px; right: 20px;
+            font-size: 1.8em;
+            color: #333;
+            cursor: pointer;
+            z-index: 10;
+            background: rgba(255,255,255,0.8);
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .close-modal:hover { background: white; }
+
+        /* Carousel */
+        .carousel { position: relative; width: 100%; height: 350px; background: #f0f0f0; }
+        .carousel-track { display: flex; transition: transform 0.4s ease; height: 100%; }
+        .carousel-slide { min-width: 100%; height: 100%; }
+        .carousel-slide img { width: 100%; height: 100%; object-fit: cover; }
+        .carousel-btn {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            background: rgba(255,255,255,0.9); border: none;
+            width: 40px; height: 40px; border-radius: 50%;
+            cursor: pointer; font-size: 1.2em; z-index: 5;
+        }
+        .carousel-btn.prev { left: 15px; }
+        .carousel-btn.next { right: 15px; }
+        .carousel-dots {
+            position: absolute; bottom: 15px; left: 50%;
+            transform: translateX(-50%); display: flex; gap: 8px;
+        }
+        .dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,0.6); cursor: pointer; }
+        .dot.active { background: white; }
+
+        .modal-body { padding: 30px; }
+        .modal-title { font-size: 1.8em; color: #333; margin-bottom: 12px; }
+        .modal-description { color: #666; line-height: 1.7; margin-bottom: 20px; }
+        .modal-price { font-size: 2.2em; color: #667eea; font-weight: bold; margin-bottom: 20px; }
+        .modal-buy-button {
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white; border: none; border-radius: 8px;
+            font-size: 1.1em; cursor: pointer;
+        }
+        .features { margin-top: 25px; padding-top: 25px; border-top: 1px solid #eee; }
+        .features h3 { margin-bottom: 12px; color: #333; font-size: 1.1em; }
+        .features ul { list-style: none; color: #666; }
+        .features li { padding: 6px 0; padding-left: 22px; position: relative; }
+        .features li:before { content: "✓"; position: absolute; left: 0; color: #667eea; font-weight: bold; }
+
+        @media (max-width: 600px) {
+            header h1 { font-size: 2em; }
+            .carousel { height: 220px; }
+            .modal-content { margin: 20px; }
+            .modal-body { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>English Shop</h1>
+            <p>Premium digital products for your success</p>
+        </header>
+
+        <div class="products-grid">
+            <div class="product-card" data-product="courses">
+                <img src="https://picsum.photos/seed/courses1/600/400" alt="Courses">
+                <div class="product-info">
+                    <h3 class="product-title">Courses</h3>
+                    <p class="product-description">Professional online courses to boost your skills and knowledge.</p>
+                    <div class="product-price">5,000 ₽</div>
+                    <button class="buy-button" onclick="openModal('courses')">Buy Now</button>
+                </div>
+            </div>
+
+            <div class="product-card" data-product="cards">
+                <img src="https://picsum.photos/seed/cards1/600/400" alt="Cards">
+                <div class="product-info">
+                    <h3 class="product-title">Cards</h3>
+                    <p class="product-description">Beautiful design cards and templates for your projects.</p>
+                    <div class="product-price">1,000 ₽</div>
+                    <button class="buy-button" onclick="openModal('cards')">Buy Now</button>
+                </div>
+            </div>
+
+            <div class="product-card" data-product="games">
+                <img src="https://picsum.photos/seed/games1/600/400" alt="Games">
+                <div class="product-info">
+                    <h3 class="product-title">Games</h3>
+                    <p class="product-description">Exciting games and interactive applications.</p>
+                    <div class="product-price">2,000 ₽</div>
+                    <button class="buy-button" onclick="openModal('games')">Buy Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <div class="carousel">
+                <div class="carousel-track" id="carouselTrack"></div>
+                <button class="carousel-btn prev" onclick="moveCarousel(-1)">❮</button>
+                <button class="carousel-btn next" onclick="moveCarousel(1)">❯</button>
+                <div class="carousel-dots" id="carouselDots"></div>
+            </div>
+            <div class="modal-body">
+                <h2 class="modal-title" id="modalTitle"></h2>
+                <p class="modal-description" id="modalDescription"></p>
+                <div class="modal-price" id="modalPrice"></div>
+                <button class="modal-buy-button" id="modalBuyButton">Buy Now</button>
+                <div class="features">
+                    <h3>What you get:</h3>
+                    <ul id="modalFeatures"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const products = {
+            courses: {
+                title: "Professional Online Courses",
+                price: "5,000 ₽",
+                description: "Comprehensive courses designed by experts. From basics to advanced topics with real-world projects.",
+                images: [
+                    "https://picsum.photos/seed/courses1/800/600",
+                    "https://picsum.photos/seed/courses2/800/600",
+                    "https://picsum.photos/seed/courses3/800/600"
+                ],
+                features: ["Full course access", "Video lectures", "Downloadable resources", "Certificate", "Lifetime updates"],
+                buyLink: "#"
+            },
+            cards: {
+                title: "Premium Design Cards",
+                price: "1,000 ₽",
+                description: "Professional templates for business cards, social media, and personal projects. Fully customizable.",
+                images: [
+                    "https://picsum.photos/seed/cards1/800/600",
+                    "https://picsum.photos/seed/cards2/800/600",
+                    "https://picsum.photos/seed/cards3/800/600"
+                ],
+                features: ["50+ designs", "PSD/AI files", "300 DPI resolution", "Commercial license", "Easy to edit"],
+                buyLink: "#"
+            },
+            games: {
+                title: "Interactive Games Collection",
+                price: "2,000 ₽",
+                description: "Web-based games with clean code and engaging gameplay. Perfect for entertainment or learning.",
+                images: [
+                    "https://picsum.photos/seed/games1/800/600",
+                    "https://picsum.photos/seed/games2/800/600",
+                    "https://picsum.photos/seed/games3/800/600"
+                ],
+                features: ["5 complete games", "Source code", "Mobile responsive", "Documentation", "1 year support"],
+                buyLink: "#"
+            }
+        };
+
+        let currentProduct = null;
+        let currentSlide = 0;
+
+        function openModal(productId) {
+            currentProduct = products[productId];
+            currentSlide = 0;
+            document.getElementById('modalTitle').textContent = currentProduct.title;
+            document.getElementById('modalDescription').textContent = currentProduct.description;
+            document.getElementById('modalPrice').textContent = currentProduct.price;
+            document.getElementById('modalBuyButton').onclick = () => { window.location.href = currentProduct.buyLink; };
+            const featuresList = document.getElementById('modalFeatures');
+            featuresList.innerHTML = '';
+            currentProduct.features.forEach(f => {
+                const li = document.createElement('li'); li.textContent = f; featuresList.appendChild(li);
+            });
+            setupCarousel(currentProduct.images);
+            document.getElementById('productModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('productModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function setupCarousel(images) {
+            const track = document.getElementById('carouselTrack');
+            const dotsContainer = document.getElementById('carouselDots');
+            track.innerHTML = ''; dotsContainer.innerHTML = '';
+            images.forEach((img, i) => {
+                const slide = document.createElement('div'); slide.className = 'carousel-slide';
+                const image = document.createElement('img'); image.src = img; image.alt = `Image ${i+1}`;
+                slide.appendChild(image); track.appendChild(slide);
+                const dot = document.createElement('div');
+                dot.className = 'dot' + (i===0 ? ' active' : '');
+                dot.onclick = () => goToSlide(i);
+                dotsContainer.appendChild(dot);
+            });
+            updateCarousel();
+        }
+
+        function moveCarousel(dir) {
+            if (!currentProduct) return;
+            currentSlide += dir;
+            if (currentSlide < 0) currentSlide = currentProduct.images.length - 1;
+            if (currentSlide >= currentProduct.images.length) currentSlide = 0;
+            updateCarousel();
+        }
+
+        function goToSlide(i) { currentSlide = i; updateCarousel(); }
+
+        function updateCarousel() {
+            document.getElementById('carouselTrack').style.transform = `translateX(-${currentSlide * 100}%)`;
+            document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === currentSlide));
+        }
+
+        window.onclick = (e) => { if (e.target.id === 'productModal') closeModal(); };
+        document.onkeydown = (e) => {
+            if (document.getElementById('productModal').style.display === 'block') {
+                if (e.key === 'Escape') closeModal();
+                if (e.key === 'ArrowLeft') moveCarousel(-1);
+                if (e.key === 'ArrowRight') moveCarousel(1);
+            }
+        };
+    </script>
+</body>
+</html>
