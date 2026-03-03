@@ -548,7 +548,7 @@
                 margin: 0;
             }
             
-            /* Карусель отзывов - автоматическая высота */
+            /* Карусель отзывов - автоматическая высота для каждого фото */
             .mobile-carousel.review-carousel {
                 display: flex !important;
                 overflow-x: auto;
@@ -557,6 +557,7 @@
                 padding: 15px !important;
                 -webkit-overflow-scrolling: touch;
                 scrollbar-width: none;
+                align-items: flex-start !important; /* ВАЖНО: не растягивать по высоте */
             }
             
             .mobile-carousel.review-carousel::-webkit-scrollbar {
@@ -572,6 +573,7 @@
                 margin: 0 5px !important;
                 scroll-snap-align: center;
                 display: block !important;
+                align-self: flex-start !important; /* ВАЖНО: не растягивать */
             }
             
             .mobile-carousel.review-carousel .review-item img {
@@ -661,7 +663,7 @@
                 </div>
                 <div class="feature-card">
                     <div>
-                        <span>👨‍💼</span>
+                        <span>👨‍</span>
                         <p>Вы взрослый и хотите как можно быстрее заговорить по-английски, убрать барьер и уверенно использовать язык в жизни и работе? Тогда Вам тоже ко мне!</p>
                     </div>
                 </div>
