@@ -432,8 +432,10 @@
 
         .review-item img {
             width: 100%;
+            height: auto;
             display: block;
             border-radius: 10px;
+            object-fit: contain;
         }
 
         .contacts-section {
@@ -537,11 +539,28 @@
             }
 
             .mobile-carousel .gallery-item,
-            .mobile-carousel .video-item,
-            .mobile-carousel .review-item {
+            .mobile-carousel .video-item {
                 flex: 0 0 85%;
                 scroll-snap-align: center;
                 margin: 0;
+            }
+            
+            /* Карусель отзывов - автоматическая высота */
+            .mobile-carousel.review-carousel {
+                padding: 20px !important;
+            }
+            
+            .mobile-carousel.review-carousel .review-item {
+                flex: 0 0 85% !important;
+                height: auto !important;
+                padding: 10px !important;
+                margin: 0 10px !important;
+            }
+            
+            .mobile-carousel.review-carousel .review-item img {
+                width: 100% !important;
+                height: auto !important;
+                object-fit: contain !important;
             }
 
             .carousel-indicators {
