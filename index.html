@@ -428,11 +428,14 @@
             padding: 10px;
             margin-bottom: 20px;
             break-inside: avoid;
+            height: auto !important;
+            max-height: none !important;
         }
 
         .review-item img {
             width: 100%;
-            height: auto;
+            height: auto !important;
+            max-height: none !important;
             display: block;
             border-radius: 10px;
             object-fit: contain;
@@ -547,20 +550,36 @@
             
             /* Карусель отзывов - автоматическая высота */
             .mobile-carousel.review-carousel {
-                padding: 20px !important;
+                display: flex !important;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+                gap: 15px !important;
+                padding: 15px !important;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+            }
+            
+            .mobile-carousel.review-carousel::-webkit-scrollbar {
+                display: none;
             }
             
             .mobile-carousel.review-carousel .review-item {
                 flex: 0 0 85% !important;
+                min-width: 85% !important;
                 height: auto !important;
+                max-height: none !important;
                 padding: 10px !important;
-                margin: 0 10px !important;
+                margin: 0 5px !important;
+                scroll-snap-align: center;
+                display: block !important;
             }
             
             .mobile-carousel.review-carousel .review-item img {
                 width: 100% !important;
                 height: auto !important;
+                max-height: none !important;
                 object-fit: contain !important;
+                display: block !important;
             }
 
             .carousel-indicators {
