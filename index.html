@@ -156,12 +156,12 @@
             text-align: center;
         }
 
-        .hero-features { max-width: 500px; margin: 0 auto; }
+        .hero-features { max-width: 700px; margin: 0 auto; }
 
         .feature-card {
             background: rgba(255,255,255,0.95);
             border-radius: 15px;
-            padding: 20px;
+            padding: 25px;
             margin-bottom: 15px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
@@ -557,7 +557,7 @@
                 padding: 15px !important;
                 -webkit-overflow-scrolling: touch;
                 scrollbar-width: none;
-                align-items: flex-start !important; /* ВАЖНО: не растягивать по высоте */
+                align-items: flex-start !important;
             }
             
             .mobile-carousel.review-carousel::-webkit-scrollbar {
@@ -573,7 +573,7 @@
                 margin: 0 5px !important;
                 scroll-snap-align: center;
                 display: block !important;
-                align-self: flex-start !important; /* ВАЖНО: не растягивать */
+                align-self: flex-start !important;
             }
             
             .mobile-carousel.review-carousel .review-item img {
@@ -656,16 +656,7 @@
             </h1>
             <div class="hero-features">
                 <div class="feature-card">
-                    <div>
-                        <span>👶</span>
-                        <p>Хотите, чтобы ваш ребёнок с первых шагов полюбил английский? Чтобы уроки были веселыми, и при этом давали реальный результат... Чтобы ОГЭ, ЕГЭ, TOEFL или IELTS были сданы на высокий балл без стресса... Тогда Вам ко мне!</p>
-                    </div>
-                </div>
-                <div class="feature-card">
-                    <div>
-                        <span>👨‍</span>
-                        <p>Вы взрослый и хотите как можно быстрее заговорить по-английски, убрать барьер и уверенно использовать язык в жизни и работе? Тогда Вам тоже ко мне!</p>
-                    </div>
+                    <p>Хотите, чтобы ваш ребёнок с первых шагов полюбил английский? Чтобы ОГЭ, ЕГЭ, TOEFL или IELTS были сданы на высокий балл без стресса... <br><br>Или Вы взрослый и хотите как можно быстрее заговорить по-английски, убрать барьер и уверенно использовать язык в жизни и работе? <br><br><strong>Тогда Вам ко мне!</strong></p>
                 </div>
             </div>
             <div class="hero-buttons">
@@ -958,7 +949,6 @@
         if (window.innerWidth <= 768) {
             carousel.classList.add('mobile-carousel');
             
-            // Создаём индикаторы
             const items = carousel.children;
             const totalSlides = items.length;
             
@@ -978,7 +968,6 @@
             }
             carousel.parentNode.insertBefore(indicators, carousel.nextSibling);
             
-            // Обновляем активный индикатор при скролле
             carousel.addEventListener('scroll', () => {
                 const scrollPos = carousel.scrollLeft;
                 const itemWidth = carousel.offsetWidth;
