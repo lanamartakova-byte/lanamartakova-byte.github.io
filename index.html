@@ -541,18 +541,17 @@
                 padding: 6px 0 !important;
             }
             
-            .nav-list {
-    gap: 5px !important;
+           .nav-list {
+    gap: 4px !important;
     flex-wrap: nowrap !important;
     overflow-x: auto !important;
-    justify-content: center !important;  /* ← Центрирует */
-    padding: 0 8px !important;
+    justify-content: center !important;
+    padding: 0 5px !important;
 }
-            }
-            
-            .nav-link {
-    font-size: 0.7rem !important;  /* Ещё меньше (было 0.75rem) */
-    padding: 4px 8px !important;   /* Уменьшили (было 5px 10px) */
+
+.nav-link {
+    font-size: 0.65rem !important;  /* Ещё меньше */
+    padding: 3px 6px !important;    /* Минимальные отступы */
     white-space: nowrap !important;
 }
             }
@@ -661,8 +660,10 @@
             .feature-card p { font-size: 0.95rem !important; }
             
             .nav-link {
-                font-size: 0.75rem !important;
-                padding: 4px 8px !important;
+    font-size: 0.6rem !important;  /* Уменьшили с 0.75rem */
+    padding: 3px 5px !important;   /* Уменьшили с 4px 8px */
+    white-space: nowrap !important;
+}
             }
 
             .mobile-carousel .gallery-item,
