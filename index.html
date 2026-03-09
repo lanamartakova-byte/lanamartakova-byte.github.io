@@ -942,12 +942,12 @@
         </div>
     </section>
 
-    <section id="contacts" class="contacts-section">
+   <section id="contacts" class="contacts-section" style="padding: 0 20px;">
         <div class="container">
             <h2 class="section-title">Контакты</h2>
             <div class="contact-info">
             <div class="contact-item">
-    <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 10px;">
+    <div style="display: flex; flex-direction: column; align-items: left; gap: 10px; width: 100%;">
         <div style="display: flex; align-items: center; gap: 10px;">
             <div class="contact-icon">📞</div>
             <a href="tel:+79670155151" class="nav-link">Позвонить</a>
@@ -963,8 +963,7 @@
                 <div class="contact-item">
                     <div class="contact-icon">📍</div>
                     <div>
-                       <p style="text-align: left; white-space: nowrap;">Москва, 5 минут пешком от м. Кузьминки</p>
-                    </div>
+                      <p style="text-align: left; margin: 0; padding: 0 10px; white-space: nowrap;">Москва, 5 минут пешком от м. Кузьминки</p>
                 </div>
             </div>
         </div>
@@ -1016,6 +1015,18 @@
         }
     }
     </script>
-
+<style>
+@media (max-width: 768px) {
+  #contacts .contact-item > div {
+    align-items: center !important;
+  }
+  #contacts .contact-item p {
+    text-align: center !important;
+    padding: 0 20px;
+    margin: 0;
+    white-space: normal !important;
+  }
+}
+</style>
 </body>
 </html>
