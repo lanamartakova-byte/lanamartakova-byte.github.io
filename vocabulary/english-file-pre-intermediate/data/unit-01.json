@@ -1,0 +1,474 @@
+{
+  "book": "English File Pre-Intermediate",
+  "unit": 1,
+  "words": [
+    {
+      "english": "curly hair",
+      "russian": "кудрявые волосы",
+      "category": "Appearance",
+      "id": "u01-001"
+    },
+    {
+      "english": "straight hair",
+      "russian": "прямые волосы",
+      "category": "Appearance",
+      "id": "u01-002"
+    },
+    {
+      "english": "long hair",
+      "russian": "длинные волосы",
+      "category": "Appearance",
+      "id": "u01-003"
+    },
+    {
+      "english": "short hair",
+      "russian": "короткие волосы",
+      "category": "Appearance",
+      "id": "u01-004"
+    },
+    {
+      "english": "red hair",
+      "russian": "рыжие волосы",
+      "category": "Appearance",
+      "id": "u01-005"
+    },
+    {
+      "english": "blond hair",
+      "russian": "светлые волосы",
+      "category": "Appearance",
+      "id": "u01-006"
+    },
+    {
+      "english": "fair hair",
+      "russian": "русые волосы",
+      "category": "Appearance",
+      "id": "u01-007"
+    },
+    {
+      "english": "beard",
+      "russian": "борода",
+      "category": "Appearance",
+      "id": "u01-008"
+    },
+    {
+      "english": "moustache",
+      "russian": "усы",
+      "category": "Appearance",
+      "id": "u01-009"
+    },
+    {
+      "english": "bald",
+      "russian": "лысый",
+      "category": "Appearance",
+      "id": "u01-010"
+    },
+    {
+      "english": "tall",
+      "russian": "высокий",
+      "category": "Appearance",
+      "id": "u01-011"
+    },
+    {
+      "english": "thin",
+      "russian": "худой",
+      "category": "Appearance",
+      "id": "u01-012"
+    },
+    {
+      "english": "medium height",
+      "russian": "среднего роста",
+      "category": "Appearance",
+      "id": "u01-013"
+    },
+    {
+      "english": "slim",
+      "russian": "стройный",
+      "category": "Appearance",
+      "id": "u01-014"
+    },
+    {
+      "english": "short",
+      "russian": "низкий",
+      "category": "Appearance",
+      "id": "u01-015"
+    },
+    {
+      "english": "overweight",
+      "russian": "полный",
+      "category": "Appearance",
+      "id": "u01-016"
+    },
+    {
+      "english": "clever",
+      "russian": "умный",
+      "category": "Personality",
+      "id": "u01-017"
+    },
+    {
+      "english": "friendly",
+      "russian": "дружелюбный",
+      "category": "Personality",
+      "id": "u01-018"
+    },
+    {
+      "english": "generous",
+      "russian": "щедрый",
+      "category": "Personality",
+      "id": "u01-019"
+    },
+    {
+      "english": "kind",
+      "russian": "добрый",
+      "category": "Personality",
+      "id": "u01-020"
+    },
+    {
+      "english": "lazy",
+      "russian": "ленивый",
+      "category": "Personality",
+      "id": "u01-021"
+    },
+    {
+      "english": "shy",
+      "russian": "скромный",
+      "category": "Personality",
+      "id": "u01-022"
+    },
+    {
+      "english": "talkative",
+      "russian": "разговорчивый",
+      "category": "Personality",
+      "id": "u01-023"
+    },
+    {
+      "english": "extrovert",
+      "russian": "экстраверт",
+      "category": "Personality",
+      "id": "u01-024"
+    },
+    {
+      "english": "hard-working",
+      "russian": "трудолюбивый",
+      "category": "Personality",
+      "id": "u01-025"
+    },
+    {
+      "english": "mean",
+      "russian": "жадный",
+      "category": "Personality",
+      "id": "u01-026"
+    },
+    {
+      "english": "quiet",
+      "russian": "тихий",
+      "category": "Personality",
+      "id": "u01-027"
+    },
+    {
+      "english": "serious",
+      "russian": "серьёзный",
+      "category": "Personality",
+      "id": "u01-028"
+    },
+    {
+      "english": "stupid",
+      "russian": "глупый",
+      "category": "Personality",
+      "id": "u01-029"
+    },
+    {
+      "english": "unfriendly",
+      "russian": "недружелюбный",
+      "category": "Personality",
+      "id": "u01-030"
+    },
+    {
+      "english": "unkind",
+      "russian": "недобрый",
+      "category": "Personality",
+      "id": "u01-031"
+    },
+    {
+      "english": "blouse",
+      "russian": "блузка",
+      "category": "Clothes",
+      "id": "u01-032"
+    },
+    {
+      "english": "cardigan",
+      "russian": "кардиган",
+      "category": "Clothes",
+      "id": "u01-033"
+    },
+    {
+      "english": "coat",
+      "russian": "пальто",
+      "category": "Clothes",
+      "id": "u01-034"
+    },
+    {
+      "english": "dress",
+      "russian": "платье",
+      "category": "Clothes",
+      "id": "u01-035"
+    },
+    {
+      "english": "jacket",
+      "russian": "куртка",
+      "category": "Clothes",
+      "id": "u01-036"
+    },
+    {
+      "english": "jeans",
+      "russian": "джинсы",
+      "category": "Clothes",
+      "id": "u01-037"
+    },
+    {
+      "english": "leggings",
+      "russian": "легинсы",
+      "category": "Clothes",
+      "id": "u01-038"
+    },
+    {
+      "english": "pyjamas",
+      "russian": "пижама",
+      "category": "Clothes",
+      "id": "u01-039"
+    },
+    {
+      "english": "shirt",
+      "russian": "рубашка",
+      "category": "Clothes",
+      "id": "u01-040"
+    },
+    {
+      "english": "shorts",
+      "russian": "шорты",
+      "category": "Clothes",
+      "id": "u01-041"
+    },
+    {
+      "english": "skirt",
+      "russian": "юбка",
+      "category": "Clothes",
+      "id": "u01-042"
+    },
+    {
+      "english": "socks",
+      "russian": "носки",
+      "category": "Clothes",
+      "id": "u01-043"
+    },
+    {
+      "english": "suit",
+      "russian": "костюм",
+      "category": "Clothes",
+      "id": "u01-044"
+    },
+    {
+      "english": "sweater",
+      "russian": "свитер",
+      "category": "Clothes",
+      "id": "u01-045"
+    },
+    {
+      "english": "tights",
+      "russian": "колготки",
+      "category": "Clothes",
+      "id": "u01-046"
+    },
+    {
+      "english": "top",
+      "russian": "топ",
+      "category": "Clothes",
+      "id": "u01-047"
+    },
+    {
+      "english": "tracksuit",
+      "russian": "спортивный костюм",
+      "category": "Clothes",
+      "id": "u01-048"
+    },
+    {
+      "english": "trousers",
+      "russian": "брюки",
+      "category": "Clothes",
+      "id": "u01-049"
+    },
+    {
+      "english": "T-shirt",
+      "russian": "футболка",
+      "category": "Clothes",
+      "id": "u01-050"
+    },
+    {
+      "english": "underwear",
+      "russian": "нижнее бельё",
+      "category": "Clothes",
+      "id": "u01-051"
+    },
+    {
+      "english": "boots",
+      "russian": "сапоги",
+      "category": "Footwear",
+      "id": "u01-052"
+    },
+    {
+      "english": "flip-flops",
+      "russian": "шлёпанцы",
+      "category": "Footwear",
+      "id": "u01-053"
+    },
+    {
+      "english": "sandals",
+      "russian": "сандалии",
+      "category": "Footwear",
+      "id": "u01-054"
+    },
+    {
+      "english": "shoes",
+      "russian": "туфли",
+      "category": "Footwear",
+      "id": "u01-055"
+    },
+    {
+      "english": "trainers",
+      "russian": "кроссовки",
+      "category": "Footwear",
+      "id": "u01-056"
+    },
+    {
+      "english": "belt",
+      "russian": "ремень",
+      "category": "Accessories",
+      "id": "u01-057"
+    },
+    {
+      "english": "cap",
+      "russian": "кепка",
+      "category": "Accessories",
+      "id": "u01-058"
+    },
+    {
+      "english": "hat",
+      "russian": "шляпа",
+      "category": "Accessories",
+      "id": "u01-059"
+    },
+    {
+      "english": "gloves",
+      "russian": "перчатки",
+      "category": "Accessories",
+      "id": "u01-060"
+    },
+    {
+      "english": "scarf",
+      "russian": "шарф",
+      "category": "Accessories",
+      "id": "u01-061"
+    },
+    {
+      "english": "tie",
+      "russian": "галстук",
+      "category": "Accessories",
+      "id": "u01-062"
+    },
+    {
+      "english": "bracelet",
+      "russian": "браслет",
+      "category": "Jewellery",
+      "id": "u01-063"
+    },
+    {
+      "english": "earrings",
+      "russian": "серьги",
+      "category": "Jewellery",
+      "id": "u01-064"
+    },
+    {
+      "english": "necklace",
+      "russian": "ожерелье",
+      "category": "Jewellery",
+      "id": "u01-065"
+    },
+    {
+      "english": "ring",
+      "russian": "кольцо",
+      "category": "Jewellery",
+      "id": "u01-066"
+    },
+    {
+      "english": "above",
+      "russian": "над",
+      "category": "Prepositions of place",
+      "id": "u01-067"
+    },
+    {
+      "english": "behind",
+      "russian": "позади",
+      "category": "Prepositions of place",
+      "id": "u01-068"
+    },
+    {
+      "english": "between",
+      "russian": "между",
+      "category": "Prepositions of place",
+      "id": "u01-069"
+    },
+    {
+      "english": "in",
+      "russian": "в",
+      "category": "Prepositions of place",
+      "id": "u01-070"
+    },
+    {
+      "english": "in front of",
+      "russian": "перед",
+      "category": "Prepositions of place",
+      "id": "u01-071"
+    },
+    {
+      "english": "in the corner",
+      "russian": "в углу",
+      "category": "Prepositions of place",
+      "id": "u01-072"
+    },
+    {
+      "english": "in the middle of",
+      "russian": "посередине",
+      "category": "Prepositions of place",
+      "id": "u01-073"
+    },
+    {
+      "english": "next to",
+      "russian": "рядом с",
+      "category": "Prepositions of place",
+      "id": "u01-074"
+    },
+    {
+      "english": "on",
+      "russian": "на",
+      "category": "Prepositions of place",
+      "id": "u01-075"
+    },
+    {
+      "english": "on the left of",
+      "russian": "слева от",
+      "category": "Prepositions of place",
+      "id": "u01-076"
+    },
+    {
+      "english": "on the right",
+      "russian": "справа",
+      "category": "Prepositions of place",
+      "id": "u01-077"
+    },
+    {
+      "english": "under",
+      "russian": "под",
+      "category": "Prepositions of place",
+      "id": "u01-078"
+    }
+  ]
+}

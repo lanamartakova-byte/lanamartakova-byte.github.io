@@ -1,0 +1,26 @@
+{
+  "title": "English File",
+  "level": "Pre-Intermediate",
+  "units": [
+    {
+      "number": 1,
+      "file": "unit-01.json"
+    }
+  ],
+  "confusableGroups": [
+    [
+      "blond hair",
+      "fair hair"
+    ],
+    [
+      "shy",
+      "quiet"
+    ],
+    [
+      "thin",
+      "slim"
+    ]
+  ],
+  "totalUnits": 12,
+  "unitFilePattern": "unit-{number}.json"
+}
