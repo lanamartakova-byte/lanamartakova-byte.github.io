@@ -1,6 +1,6 @@
 import {loadUnits} from './catalog.js?v=0c8318f38e9b';
 import {validateUnits,reviewGroups,planSession,denominator,newResponse,resetResponse,connect,check,reveal,resultMessage} from './engine.js?v=df084b53c91b';
-import {AudioFeedback} from './audio.js?v=f26b033aad17';
+import {AudioFeedback} from './audio.js?v=71e013442038';
 const app=document.querySelector('#app'),audio=new AudioFeedback();
 const modes=['Flashcards','Listening','Matching','Spelling','Quiz','Mixed Practice'];
 const paths={back:'M20 12H4m7-7-7 7 7 7',previous:'m15 5-7 7 7 7',next:'m9 5 7 7-7 7',play:'m8 4 12 8-12 8Z',book:'M3 5q5-3 9 0 4-3 9 0v15q-5-3-9 0-4-3-9 0Zm9 0v15',Flashcards:'m4 7 12-3 4 14-12 3ZM3 11l3 11 13-3',Listening:'M4 15v-3a8 8 0 0 1 16 0v3M4 13H2v7h5v-7Zm16 0h2v7h-5v-7',Matching:'M3 7h6m6 0h6M3 17h6m6 0h6M9 7l6 10M9 17l6-10',Spelling:'m4 16 12-12 4 4L8 20H4Zm10-10 4 4',Quiz:'M7 7a5 5 0 0 1 10 0c0 4-5 3-5 7m0 4v1M4 3h16v19H4Z','Mixed Practice':'M3 6h4c5 0 5 12 10 12h4m-4-4 4 4-4 4M3 18h4c5 0 5-12 10-12h4m-4-4 4 4-4 4',Review:'M20 8a8 8 0 1 0 0 9M20 3v6h-6',Results:'M7 3h10v7a5 5 0 0 1-10 0ZM7 5H3v3q0 5 5 5m9-8h4v3q0 5-5 5m-4 2v5m-4 1h8',speaker:'m3 9 5 0 5-5v16l-5-5H3Zm14-2q6 5 0 10m-1-7q2 2 0 4'};

@@ -1,5 +1,5 @@
 export class AudioFeedback {
-  volume=0.025; context=null; active=null; last=0;
+  volume=0.35; context=null; active=null; last=0;
   effect(kind='tap') {
     if(Date.now()-this.last<90)return;
     this.last=Date.now();
