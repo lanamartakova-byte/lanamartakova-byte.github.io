@@ -147,3 +147,46 @@ body.keyboard-open main[data-screen="exercise"] > .counter { grid-column:2;grid-
 body.keyboard-open main[data-screen="exercise"] > .task-kind { grid-column:2;grid-row:2;font-size:13px;align-self:center; }
 body.keyboard-open main[data-screen="exercise"] > :not(.heading):not(.counter):not(.task-kind):not(.sr-only) { grid-column:1 / -1; }
 body.keyboard-open main[data-screen="exercise"] .instruction { padding:4px 12px;line-height:1.1; }
+
+/* Flashcards only: pale blue surface with quiet flowing edge details. */
+main[data-screen="exercise"] .flash-panel {
+  position:relative;
+  background:linear-gradient(145deg,#e6f5ff 0%,#f4fbff 34%,#ffffff 63%,#edf9ff 100%);
+  grid-template-rows:1fr;
+  place-items:center;
+}
+main[data-screen="exercise"] .flash-panel::before,
+main[data-screen="exercise"] .flash-panel::after {
+  content:"";
+  position:absolute;
+  inset-inline:12px;
+  height:30px;
+  pointer-events:none;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 40' preserveAspectRatio='none'%3E%3Cg fill='none' stroke='%2300afd4' stroke-width='1' stroke-linecap='round'%3E%3Cpath d='M-12 24C52-6 122 44 192 18S270 8 312-2'/%3E%3Cpath d='M-8 35C62 5 128 49 204 28S276 20 310 10'/%3E%3C/g%3E%3C/svg%3E") center / 100% 100% no-repeat;
+  opacity:.23;
+}
+main[data-screen="exercise"] .flash-panel::before { top:14px; }
+main[data-screen="exercise"] .flash-panel::after { bottom:14px;transform:rotate(180deg);opacity:.18; }
+main[data-screen="exercise"] .flash-content {
+  display:grid;
+  justify-items:center;
+  align-content:center;
+  gap:14px;
+  width:100%;
+  min-width:0;
+  margin-block:40px;
+}
+main[data-screen="exercise"] .flash-content .card-word {
+  grid-row:auto;
+  font-size:clamp(32px,6.8vw,64px);
+  line-height:1.18;
+  background:transparent;
+  box-shadow:none;
+}
+main[data-screen="exercise"] .flash-panel.is-flipped .card-word { font-size:clamp(30px,6vw,58px); }
+main[data-screen="exercise"] .flash-content .speaker-slot {
+  grid-row:auto;
+  align-self:center;
+  height:auto;
+  padding-top:0;
+}

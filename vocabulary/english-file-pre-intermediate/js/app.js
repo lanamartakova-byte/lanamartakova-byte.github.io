@@ -36,7 +36,7 @@ function start(selected){mode=selected;const words=review?review.words:unit.word
 function renderTask(focus=true){audio.stop();const t=plan[position],r=response;app.dataset.task=t.type;app.dataset.mode=mode;
  let content='',instruction='',controls='';
  if(mode==='Flashcards') {
- content=`<div class="flash-row">${button(icon('previous'),'previous','class="arrow" aria-label="Previous card"'+(position===0?' disabled':''))}<div class="flash-panel" data-card="true"><button class="card-word" data-action="flip" aria-label="Flip card"><span lang="${flipped?'ru':'en'}">${esc(flipped?t.word.russian:t.word.english)}</span></button><div class="speaker-slot">${flipped?'':button(icon('speaker'),'speak','class="play" aria-label="Pronounce English word"')}</div></div>${button(icon('next'),'card-next','class="arrow" aria-label="Next card"')}</div>${button('↻ Flip','flip','class="flip"')}`;
+ content=`<div class="flash-row">${button(icon('previous'),'previous','class="arrow" aria-label="Previous card"'+(position===0?' disabled':''))}<div class="flash-panel${flipped?' is-flipped':''}" data-card="true"><div class="flash-content"><button class="card-word" data-action="flip" aria-label="Flip card"><span lang="${flipped?'ru':'en'}">${esc(flipped?t.word.russian:t.word.english)}</span></button>${flipped?'':`<div class="speaker-slot">${button(icon('speaker'),'speak','class="play" aria-label="Pronounce English word"')}</div>`}</div></div>${button(icon('next'),'card-next','class="arrow" aria-label="Next card"')}</div>${button('↻ Flip','flip','class="flip"')}`;
  } else {
  if(t.type==='Spelling') {
  instruction='Type the English word for the Russian translation.';
