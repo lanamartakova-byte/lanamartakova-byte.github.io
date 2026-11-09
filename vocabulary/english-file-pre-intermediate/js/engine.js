@@ -52,6 +52,7 @@ export function matchingSets(words,groups=[]) {
   return sets;
 }
 export function planSession(mode,words,groups=[]) {
+  words=shuffle(words);
   if(mode==='Flashcards')return words.map(word=>({type:mode,word}));
   if(mode==='Matching')return matchingSets(words,groups);
   if(mode==='Mixed Practice'||mode==='Review') {

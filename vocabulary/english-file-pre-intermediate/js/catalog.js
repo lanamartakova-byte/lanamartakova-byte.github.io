@@ -23,3 +23,20 @@ export async function loadUnits(book,request) {
     return unit;
   }));
 }
+
+// Explicit membership; units without configured parts retain their existing menu.
+export function partSelections(unit) {
+  if(!unit.parts?.length)return [];
+  const words=new Map(unit.words.map(w=>[w.id,w])),seen=new Set(),ids=new Set();
+  const parts=unit.parts.map(p=>{
+    if(!p.id||p.id==='revision'||ids.has(p.id)||!p.title?.trim()||!Array.isArray(p.wordIds)||!p.wordIds.length)throw Error('Invalid part configuration');
+    ids.add(p.id);
+    const selected=p.wordIds.map(id=>{
+      if(!words.has(id)||seen.has(id))throw Error(`Missing or repeated part vocabulary: ${id}`);
+      seen.add(id);return words.get(id);
+    });
+    return {id:p.id,title:p.title,words:selected};
+  });
+  if(seen.size!==words.size)throw Error('Parts must cover all unit vocabulary');
+  return [...parts,{id:'revision',title:'Revision',words:[...unit.words]}];
+}

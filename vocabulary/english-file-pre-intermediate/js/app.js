@@ -1,5 +1,5 @@
-import {loadUnits} from './catalog.js?v=0c8318f38e9b';
-import {validateUnits,reviewGroups,planSession,denominator,newResponse,resetResponse,connect,check,reveal,resultMessage} from './engine.js?v=df084b53c91b';
+import {loadUnits,partSelections} from './catalog.js?v=e4e875e5869b';
+import {validateUnits,reviewGroups,planSession,denominator,newResponse,resetResponse,connect,check,reveal,resultMessage} from './engine.js?v=e317c7d5110d';
 import {AudioFeedback} from './audio.js?v=71e013442038';
 const app=document.querySelector('#app'),audio=new AudioFeedback();
 const modes=['Flashcards','Listening','Matching','Spelling','Quiz','Mixed Practice'];
@@ -7,7 +7,7 @@ const paths={back:'M20 12H4m7-7-7 7 7 7',previous:'m15 5-7 7 7 7',next:'m9 5 7 7
 const icon=name=>`<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="${paths[name]||paths.book}"/></svg>`;
 const esc=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const button=(label,action,extra='')=>`<button data-action="${action}" ${extra}>${label}</button>`;
-let book,units,unit,review=null,mode,plan=[],position=0,response=newResponse(),score=0,flipped=false,screen='home';
+let book,units,unit,part=null,review=null,mode,plan=[],position=0,response=newResponse(),score=0,flipped=false,screen='home';
 let resizeObserver;
 let fullViewportHeight=window.innerHeight,viewportWidth=window.innerWidth;
 function updateViewport(){
@@ -21,7 +21,7 @@ function updateViewport(){
 }
 window.visualViewport?.addEventListener('resize',updateViewport);
 window.addEventListener('resize',()=>{updateViewport();if(app.dataset.task==='Matching')requestAnimationFrame(drawLines);});
-const label=()=>review?`Review: Units ${review.start}–${review.end}`:`Unit ${unit.unit}`;
+const label=()=>review?`Review: Units ${review.start}–${review.end}`:`Unit ${unit.unit}${part?` · ${part.title}`:''}`;
 function header(title,back='menu',symbol=mode){return `<header class="heading">${button(icon('back'),back,'class="back" aria-label="Back"')}<h1>${icon(symbol)}<span>${esc(title)}</span></h1></header>`;}
 function mount(html,focus=true){resizeObserver?.disconnect();document.body.dataset.screen=screen;app.dataset.screen=screen;app.innerHTML=html;updateViewport();if(focus){app.focus({preventScroll:true});window.scrollTo(0,0);} }
 function home(){screen='home';audio.stop();review=null;let grid='';const reviews=reviewGroups(units);
@@ -31,8 +31,13 @@ function home(){screen='home';audio.stop();review=null;let grid='';const reviews
  }
  mount(`<section class="book-header">${icon('book')}<div><h1>${esc(book.title)}</h1><p>${esc(book.level)}</p></div></section><h2 class="choose">Choose a unit</h2><div class="unit-grid">${grid}</div>`);
 }
-function menu(){screen='menu';audio.stop();review=null;mount(`${header(`${book.title} · ${book.level}`,'home','book')}<h2 class="unit-title">${icon('book')}Unit ${unit.unit}</h2><div class="mode-list">${modes.map(m=>button(`${icon(m)}<span>${m}</span><b aria-hidden="true">›</b>`,'start',`data-mode="${m}"`)).join('')}</div>`);}
-function start(selected){mode=selected;const words=review?review.words:unit.words;plan=planSession(mode,words,book.confusableGroups);position=0;score=0;response=newResponse();flipped=false;screen='exercise';renderTask();}
+function parts(){
+ const selections=partSelections(unit);if(!selections.length){part=null;return menu();}
+ screen='parts';audio.stop();review=null;part=null;
+ mount(`<header class="parts-heading">${button(icon('back'),'home','class="back" aria-label="Back to units"')}<h1>Unit ${unit.unit}</h1>${icon('book')}</header><section class="parts-content"><h2>Choose a part</h2><p>Practise vocabulary step by step</p><div class="part-list">${selections.map((p,i)=>button(`<span class="part-badge">${p.id==='revision'?icon('Review'):String(i+1).padStart(2,'0')}</span><span class="part-copy"><strong>${esc(p.title)}</strong><small>${p.id==='revision'?`All Unit ${unit.unit} words`:'Selected vocabulary'}</small></span><span class="part-arrow" aria-hidden="true">${icon('next')}</span>`,'part',`data-part="${esc(p.id)}"`)).join('')}</div></section>`);
+}
+function menu(){screen='menu';audio.stop();review=null;mount(`${header(`${book.title} · ${book.level}`,part?'parts':'home','book')}<h2 class="unit-title">${icon('book')}${esc(label())}</h2><div class="mode-list">${modes.map(m=>button(`${icon(m)}<span>${m}</span><b aria-hidden="true">›</b>`,'start',`data-mode="${m}"`)).join('')}</div>`);}
+function start(selected){mode=selected;const words=review?review.words:(part?.words??unit.words);plan=planSession(mode,words,book.confusableGroups);position=0;score=0;response=newResponse();flipped=false;screen='exercise';renderTask();}
 function renderTask(focus=true){audio.stop();const t=plan[position],r=response;app.dataset.task=t.type;app.dataset.mode=mode;
  let content='',instruction='',controls='';
  if(mode==='Flashcards') {
@@ -68,8 +73,10 @@ function drawLines(){const container=document.querySelector('.matching');if(!con
 function results(){screen='results';audio.stop();const total=denominator(plan),pct=Math.round(score/total*100);mount(`${header(`${label()} · Results`,review?'home':'menu','Results')}<div class="result-art" aria-hidden="true">${pct>=90?'🏆':icon('Results')}</div><section class="score-panel"><h2>Your score:</h2><p class="score">${score} / ${total}</p><p>correct answers${mode==='Matching'?' · scored per word pair':''}</p></section><p class="percentage">${pct}%</p><h2 class="message">${resultMessage(pct)}</h2><div class="result-actions">${button('↶ Try Again','retry','class="primary"')}${button(`← ${review?'Back to Units':'Back to Unit'}`,review?'home':'menu')}</div>`);}
 function act(action,element){
  const t=plan[position],r=response;
+ if(action==='parts')return parts();
+ if(action==='part'){part=partSelections(unit).find(p=>p.id===element.dataset.part);if(part)return menu();return;}
  if(action==='home')return home();if(action==='menu')return menu();
- if(action==='unit'){const chosen=units.find(u=>u.unit===Number(element.dataset.unit));if(!chosen?.words.length)return;unit=chosen;return menu();}
+ if(action==='unit'){const chosen=units.find(u=>u.unit===Number(element.dataset.unit));if(!chosen?.words.length)return;unit=chosen;return parts();}
  if(action==='review'){const chosen=reviewGroups(units).find(g=>g.start===Number(element.dataset.start));if(!chosen)return;review=chosen;return start('Review');}
  if(action==='start')return start(element.dataset.mode);if(action==='retry')return start(mode);
  if(action==='speak'){audio.speak(t.word,msg=>{const node=document.querySelector('#audio-status');if(node)node.textContent=msg;});return;}
@@ -88,6 +95,7 @@ window.addEventListener('hashchange',()=>home());
 try {
  const fetchJSON=async url=>{const res=await fetch(url,{cache:'no-store'});if(!res.ok)throw Error(`Unable to load ${url} (${res.status})`);return res.json();};
  book=await fetchJSON('./data/book.json');units=await loadUnits(book,fetch);
+ units.forEach(partSelections);
  const validation=validateUnits(units);if(validation.errors.length)throw Error(validation.errors.join('; '));if(validation.warnings.length)console.warn(`${validation.warnings.length} vocabulary warnings: ${validation.warnings.slice(0,8).join('; ')}${validation.warnings.length>8?'; … see data validation for the remaining entries.':''}`);
  home();
 }catch(error){mount(`<h1>Vocabulary could not load</h1><p>${esc(error.message)}</p><p>Please refresh the page or check the vocabulary files.</p>`);}
